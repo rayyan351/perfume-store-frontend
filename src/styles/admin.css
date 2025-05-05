@@ -14,7 +14,6 @@
   letter-spacing: 1px;
 }
 
-/* Stats Panel */
 .stats-panel {
   display: flex;
   justify-content: space-between;
@@ -43,8 +42,6 @@
   border: 1px solid #c3e6c3;
 }
 
-/* Filter Panel */
-/* ========== Filter Toggle (range vs single) ========== */
 .filter-toggle {
   display: flex;
   justify-content: center;
@@ -73,7 +70,6 @@
   box-shadow: 0 4px 12px rgba(245, 222, 179, 0.4);
 }
 
-/* ========== Filter Date Inputs + Button ========== */
 .filter-panel {
   display: flex;
   flex-wrap: wrap;
@@ -136,8 +132,6 @@
   color: #111;
 }
 
-
-/* Order List */
 .order-list {
   list-style: none;
   padding: 0;
@@ -187,7 +181,6 @@
   margin-top: 0.3rem;
 }
 
-/* Delete Button */
 .delete-btn {
   background: crimson;
   color: white;
@@ -204,7 +197,6 @@
   background: darkred;
 }
 
-/* Responsive Layout */
 @media (max-width: 768px) {
   .stats-panel {
     flex-direction: column;

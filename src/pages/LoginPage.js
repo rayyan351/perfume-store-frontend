@@ -51,7 +51,7 @@ const LoginPage = () => {
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setErrors((prev) => ({ ...prev, [e.target.name]: "" })); // clear on input
+    setErrors((prev) => ({ ...prev, [e.target.name]: "" })); 
   };
 
   const handleSubmit = async (e) => {
@@ -63,7 +63,7 @@ const LoginPage = () => {
     setSuccessMessage("");
 
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/${endpoint}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

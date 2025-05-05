@@ -1,4 +1,3 @@
-/* ===== Base Styles ===== */
 .navbar {
   background-color: #111;
   color: white;
@@ -26,8 +25,6 @@
   text-shadow: 0 0 10px rgba(245, 222, 179, 0.4);
 }
 
-
-/* ===== Hamburger Menu ===== */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -56,7 +53,6 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ===== Nav Links ===== */
 .nav-links {
   list-style: none;
   display: flex;
@@ -85,7 +81,6 @@
   transform: translateY(-2px);
 }
 
-/* ===== Cart Icon ===== */
 .cart-link {
   position: relative;
   display: flex;
@@ -108,18 +103,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 0 2px #f5deb3; /* matches navbar background */
+  box-shadow: 0 0 0 2px #f5deb3; 
   transform: translate(50%, -50%);
   transition: transform 0.2s ease, background 0.3s ease;
 }
 
-/* ===== Active Link ===== */
+
 .nav-links .active a {
   color: #f5deb3;
   border-bottom: 2px solid #f5deb3;
 }
 
-/* ===== Responsive Mobile Nav ===== */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;

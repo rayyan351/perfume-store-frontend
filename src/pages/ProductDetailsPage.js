@@ -16,10 +16,10 @@ const ProductDetailsPage = () => {
   }
 
   const handleBuyNow = () => {
-    addToCart(perfume);          // ✅ Add to cart first
+    addToCart(perfume);        
     setTimeout(() => {
-      navigate("/checkout");     // ✅ Then navigate
-    }, 100); // slight delay ensures cart context updates first
+      navigate("/checkout");    
+    }, 100); 
   };
 
   return (

@@ -72,7 +72,6 @@
   padding-top: 1rem;
 }
 
-/* Button Style */
 .order-summary-box button {
   margin-top: 2.5rem;
   padding: 0.9rem 2rem;
@@ -94,7 +93,6 @@
   transform: translateY(-2px);
 }
 
-/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -106,7 +104,7 @@
   }
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
   .order-summary-box {
     padding: 2rem 1.2rem;

@@ -67,7 +67,6 @@
   color: #999;
 }
 
-/* Optional glow line above footer */
 .footer::before {
   content: "";
   display: block;

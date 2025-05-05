@@ -1,4 +1,3 @@
-// ✅ NO useNavigate here!
 import React, { createContext, useState, useContext } from "react";
 
 const AuthContext = createContext();

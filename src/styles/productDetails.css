@@ -9,13 +9,13 @@
 
 .product-img {
   width: 100%;
-  max-width: 440px;       /* ✅ Stops image from being too wide */
+  max-width: 440px;     
   max-height: 420px;
-  aspect-ratio: 4 / 5;     /* ✅ Ensures portrait-style aspect */
+  aspect-ratio: 4 / 5;     
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-  margin: 0 auto;          /* ✅ Center image on smaller screens */
+  margin: 0 auto;          
 }
 
 .product-info {
@@ -162,8 +162,6 @@
   }
 }
 
-
-/* Responsive */
 @media (max-width: 900px) {
   .product-details {
     grid-template-columns: 1fr;

@@ -10,16 +10,15 @@ const AdminDashboardPage = () => {
   const [stats, setStats] = useState({ totalUsers: 0, totalOrders: 0, totalSales: 0 });
   const [filterDates, setFilterDates] = useState({ start: "", end: "" });
   const [filteredStats, setFilteredStats] = useState(null);
-  const [filterMode, setFilterMode] = useState("range"); // 'range' or 'single'
+  const [filterMode, setFilterMode] = useState("range"); 
   const [singleDate, setSingleDate] = useState("");
-  const navigate = useNavigate(); // ⬅️ Add this
-
+  const navigate = useNavigate(); 
    useEffect(() => {
     if (!auth || !auth.token) {
       navigate("/login");
     } else if (!auth.user?.isAdmin) {
       alert("❌ Access Denied. This page is only for admins.");
-      navigate("/"); // redirect to homepage
+      navigate("/"); 
     }
   }, [auth, navigate]);
 
@@ -28,7 +27,7 @@ const AdminDashboardPage = () => {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/orders/all", {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/all`, {
           headers: { Authorization: auth.token },
         });
         const data = await res.json();
@@ -49,7 +48,7 @@ const AdminDashboardPage = () => {
     if (!auth || !auth.token) return;
 
     const fetchStats = async () => {
-      const res = await fetch("http://localhost:5000/api/admin/stats", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/admin/stats`, {
         headers: { Authorization: auth.token },
       });
       const data = await res.json();
@@ -79,9 +78,8 @@ const AdminDashboardPage = () => {
       end = singleDate;
     }
   
-    // Fetch filtered orders
     const resOrders = await fetch(
-      `http://localhost:5000/api/orders/filter?startDate=${start}&endDate=${end}`,
+      `${process.env.REACT_APP_API_URL}/api/orders/filter?startDate=${start}&endDate=${end}`,
       {
         headers: { Authorization: auth.token },
       }
@@ -90,9 +88,8 @@ const AdminDashboardPage = () => {
     if (!resOrders.ok) return alert(ordersData.message);
     setOrders(ordersData);
   
-    // Fetch filtered stats
     const resStats = await fetch(
-      `http://localhost:5000/api/admin/stats/date?startDate=${start}&endDate=${end}`,
+      `${process.env.REACT_APP_API_URL}/api/admin/stats/date?startDate=${start}&endDate=${end}`,
       {
         headers: { Authorization: auth.token },
       }
@@ -105,18 +102,13 @@ const AdminDashboardPage = () => {
   return (
     <div className="admin-dashboard">
       <h2>Admin Panel – All Orders</h2>
-
-      {/* Stats Panel */}
       <div className="stats-panel filtered">
         <div><strong>Total Users:</strong> {stats.totalUsers || 0}</div>
         <div><strong>Total Orders:</strong> {stats.totalOrders || 0}</div>
         <div><strong>Total Sales:</strong> ${typeof stats.totalSales === "number" ? stats.totalSales.toFixed(2) : "0.00"}</div>
       </div>
 
-      {/* Date Filter */}
-      {/* Date Filter Toggle */}
     <div className="filter-panel">
-  {/* Date Filter Toggle */}
 <div className="filter-toggle">
   <input
     type="radio"
@@ -179,8 +171,6 @@ const AdminDashboardPage = () => {
        </div>
        </div>
 
-
-      {/* Filtered Stats */}
       {filteredStats && (
         <div className="stats-panel filtered" style={{ background: "#e0f7e0" }}>
           <div><strong>Filtered Users:</strong> {filteredStats.totalUsers || 0}</div>
@@ -189,7 +179,6 @@ const AdminDashboardPage = () => {
         </div>
       )}
 
-      {/* Search */}
       <input
         type="text"
         placeholder="Search by email..."
@@ -197,7 +186,6 @@ const AdminDashboardPage = () => {
         className="search-input"
       />
 
-      {/* Orders List */}
       {orders.length === 0 ? (
         <p>No orders yet.</p>
       ) : (
@@ -214,7 +202,7 @@ const AdminDashboardPage = () => {
                   value={order.status}
                   onChange={async (e) => {
                     const newStatus = e.target.value;
-                    const res = await fetch(`http://localhost:5000/api/orders/status/${order._id}`, {
+                    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/status/${order._id}`, {
                       method: "PUT",
                       headers: {
                         "Content-Type": "application/json",
@@ -257,7 +245,7 @@ const AdminDashboardPage = () => {
                 onClick={async () => {
                   const confirmDelete = window.confirm("Are you sure you want to delete this order?");
                   if (!confirmDelete) return;
-                  const res = await fetch(`http://localhost:5000/api/orders/${order._id}`, {
+                  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/${order._id}`, {
                     method: "DELETE",
                     headers: { Authorization: auth.token },
                   });

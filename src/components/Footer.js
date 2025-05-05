@@ -10,7 +10,7 @@ const Footer = () => {
     if (!email) return setMessage("Please enter a valid email.");
 
     try {
-      const res = await fetch("http://localhost:5000/api/newsletter/subscribe", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/newsletter/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -35,12 +35,11 @@ const Footer = () => {
           <li><a href="/contact">Contact</a></li>
         </ul>
         <div className="footer-socials">
-          <a href="#"><i className="fab fa-instagram"></i></a>
-          <a href="#"><i className="fab fa-facebook-f"></i></a>
-          <a href="#"><i className="fab fa-twitter"></i></a>
+          <a href="/"><i className="fab fa-instagram"></i></a>
+          <a href="/"><i className="fab fa-facebook-f"></i></a>
+          <a href="/"><i className="fab fa-twitter"></i></a>
         </div>
 
-        {/* Newsletter Signup */}
         <form className="newsletter-form" onSubmit={handleSubscribe}>
           <input
             type="email"

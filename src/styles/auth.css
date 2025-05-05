@@ -122,7 +122,6 @@
     text-decoration: underline;
   }
   
-  /* Reset password form enhancements */
 .auth-msg {
   margin-top: 1rem;
   font-weight: 500;
@@ -179,8 +178,6 @@
   }
 }
 
-
-/* ========== Responsive Auth Page ========== */
 @media (max-width: 768px) {
   .auth-box {
     padding: 2rem 1.2rem;

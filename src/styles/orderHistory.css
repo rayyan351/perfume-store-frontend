@@ -69,7 +69,6 @@
   margin-top: 0.5rem;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .order-item {
     padding: 1.5rem;

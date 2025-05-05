@@ -7,11 +7,11 @@ const OrderHistoryPage = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (!auth || !auth.token) return; // ✅ Prevent fetch after logout
+    if (!auth || !auth.token) return; 
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/orders/my-orders", {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/my-orders`, {
           headers: {
             Authorization: auth.token,
           },

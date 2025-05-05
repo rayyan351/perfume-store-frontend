@@ -30,7 +30,6 @@ const PerfumesPage = () => {
         <h2>All Perfumes</h2>
         <p>Explore our complete luxury fragrance range</p>
 
-        {/* Search input */}
         <input
           type="text"
           className="search-input"
@@ -39,7 +38,6 @@ const PerfumesPage = () => {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {/* Filter Bar */}
         <div className="filter-bar">
           <select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="All">All Categories</option>
@@ -66,7 +64,6 @@ const PerfumesPage = () => {
           </select>
         </div>
 
-        {/* Perfume List */}
         {filteredPerfumes.length > 0 ? (
           <div className="perfume-grid">
             {filteredPerfumes.map((perfume) => (

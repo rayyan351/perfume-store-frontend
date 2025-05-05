@@ -94,7 +94,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .contact-form-wrapper {
     padding: 2rem;

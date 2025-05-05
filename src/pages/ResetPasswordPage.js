@@ -27,7 +27,7 @@ const ResetPasswordPage = () => {
     setSuccessMessage("");
 
     try {
-      const res = await fetch(`http://localhost:5000/api/auth/reset-password/${token}`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/reset-password/${token}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -79,7 +79,7 @@ const ResetPasswordPage = () => {
           {errorMessage && <p className="error-msg">{errorMessage}</p>}
 
           <form onSubmit={handleSubmit} className="auth-form">
-         <div className="password-wrapper"> {/* FIXED */}
+         <div className="password-wrapper"> 
         <input
         type={showPassword ? "text" : "password"}
         placeholder="New Password"
