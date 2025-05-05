@@ -1,0 +1,81 @@
+.order-history {
+  padding: 4rem 2rem;
+  background: #fefcf9;
+  min-height: 100vh;
+}
+
+.order-history h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.order-list {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.order-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 32px rgba(0, 0, 0, 0.08);
+}
+
+.order-item div {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.order-item div strong {
+  color: #111;
+  font-weight: 600;
+  margin-right: 0.4rem;
+}
+
+.order-item ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+  color: #555;
+}
+
+.order-item li {
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.order-item .status {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: #f5deb3;
+  color: #111;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .order-item {
+    padding: 1.5rem;
+  }
+
+  .order-history h2 {
+    font-size: 2rem;
+  }
+}

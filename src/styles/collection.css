@@ -1,0 +1,160 @@
+.collection-section {
+  padding: 5rem 2rem;
+  background-color: #fefcf9;
+  text-align: center;
+}
+
+.collection-section h2 {
+  font-size: 2.7rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  color: #111;
+  position: relative;
+}
+
+.collection-section h2::after {
+  content: "";
+  width: 60px;
+  height: 3px;
+  background: #f5deb3;
+  display: block;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.collection-section p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Perfume Grid ===== */
+.perfume-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Desktop-only adjustment for exactly 1 card */
+@media (min-width: 769px) {
+  .perfume-grid:has(.perfume-card:nth-child(1):nth-last-child(1)) {
+    justify-content: center;
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Desktop-only adjustment for exactly 2 cards */
+  .perfume-grid:has(.perfume-card:nth-child(2):nth-last-child(1)) {
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== CTA Button ===== */
+.cta-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-container .btn {
+  padding: 0.75rem 1.6rem;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  background: #f5deb3;
+  color: #111;
+  box-shadow: 0 4px 12px rgba(245, 222, 179, 0.3);
+}
+
+.cta-container .btn:hover {
+  background: #e0c18f;
+  box-shadow: 0 6px 18px rgba(245, 222, 179, 0.4);
+}
+
+/* ===== Search Input ===== */
+.search-input {
+  margin: 1.5rem auto;
+  display: block;
+  padding: 0.8rem 1rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+/* ===== Filter Bar ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem auto 2.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-bar select,
+.filter-bar input[type="range"] {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  background-color: #fff;
+}
+
+.filter-bar span {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .collection-section {
+    padding: 3.5rem 1rem;
+  }
+
+  .collection-section h2 {
+    font-size: 2rem;
+  }
+
+  .collection-section p {
+    font-size: 1rem;
+  }
+
+  .cta-container .btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.75rem 1.2rem;
+  }
+
+  .perfume-grid {
+    gap: 1.5rem;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .filter-bar select,
+  .filter-bar input[type="range"] {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .search-input {
+    width: 100%;
+    max-width: 300px;
+  }
+}

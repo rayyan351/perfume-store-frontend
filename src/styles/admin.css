@@ -1,0 +1,285 @@
+.admin-dashboard {
+  padding: 4rem 2rem;
+  background: #fefcf9;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-dashboard h2 {
+  text-align: center;
+  font-size: 2.3rem;
+  margin-bottom: 2.5rem;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+/* Stats Panel */
+.stats-panel {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  padding: 1.5rem 2rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  color: #111;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+}
+.stats-panel > div {
+  flex: 1 1 30%;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.stats-panel.filtered {
+  background: rgba(230, 255, 230, 0.3);
+  border: 1px solid #c3e6c3;
+}
+
+/* Filter Panel */
+/* ========== Filter Toggle (range vs single) ========== */
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-toggle label {
+  background: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #f5deb3;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.filter-toggle input[type="radio"] {
+  display: none;
+}
+
+.filter-toggle input[type="radio"]:checked + label {
+  background-color: #f5deb3;
+  color: #111;
+  box-shadow: 0 4px 12px rgba(245, 222, 179, 0.4);
+}
+
+/* ========== Filter Date Inputs + Button ========== */
+.filter-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.filter-panel input[type="date"] {
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.filter-panel input[type="date"]:focus {
+  border-color: #f5deb3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(245, 222, 179, 0.4);
+}
+
+.filter-btn{
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #f5deb3;
+  color: #111;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 222, 179, 0.4);
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #e0c18f;
+  box-shadow: 0 6px 16px rgba(245, 222, 179, 0.5);
+}
+
+.reset-btn {
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #7a7777;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(245, 222, 179, 0.4);
+  transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+  background-color: #eee;
+  border-color: #999;
+  color: #111;
+}
+
+
+/* Order List */
+.order-list {
+  list-style: none;
+  padding: 0;
+}
+
+.order-item {
+  background: white;
+  border-radius: 14px;
+  padding: 1.8rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+  animation: fadeSlideIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.order-item:hover {
+  transform: translateY(-4px);
+}
+
+.order-item div {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.order-item ul {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1rem;
+  color: #555;
+}
+
+.order-item select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+}
+
+/* Delete Button */
+.delete-btn {
+  background: crimson;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .stats-panel {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .filter-panel {
+    flex-direction: column;
+  }
+
+  .order-item {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 2rem 1rem;
+  }
+
+  .admin-dashboard h2 {
+    font-size: 1.8rem;
+  }
+
+  .stats-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.2rem;
+  }
+
+  .stats-panel > div {
+    flex: 1 1 100%;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .filter-toggle {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .filter-panel {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .filter-panel input[type="date"],
+  .filter-btn,
+  .reset-btn {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .order-item {
+    padding: 1.2rem;
+  }
+
+  .order-item div {
+    font-size: 0.9rem;
+  }
+
+  .order-item ul {
+    font-size: 0.9rem;
+    padding-left: 0.8rem;
+  }
+
+  .order-item select {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .delete-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

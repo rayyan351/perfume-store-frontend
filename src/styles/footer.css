@@ -1,0 +1,119 @@
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 3rem 1.5rem 2rem;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+  z-index: 5;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-logo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #f5deb3;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 1.2rem 0;
+}
+
+.footer-links li a {
+  color: #ddd;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: #f5deb3;
+  transform: translateY(-2px);
+}
+
+.footer-socials {
+  margin-top: 1rem;
+}
+
+.footer-socials a {
+  color: #bbb;
+  margin: 0 0.6rem;
+  font-size: 1.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-socials a:hover {
+  color: #f5deb3;
+  transform: scale(1.2);
+}
+
+.footer-copy {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+/* Optional glow line above footer */
+.footer::before {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, #f5deb3, transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.newsletter-form {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.newsletter-form input {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  width: 220px;
+  background: #222;
+  color: #fff;
+}
+
+.newsletter-form button {
+  background: #f5deb3;
+  color: #111;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #fff1c1;
+}
+
+.newsletter-msg {
+  margin-top: 1rem;
+  color: #f5deb3;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
