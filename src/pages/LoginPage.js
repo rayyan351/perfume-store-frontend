@@ -25,24 +25,23 @@ const LoginPage = () => {
 
   const validate = () => {
     const newErrors = {};
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/;
 
     if (isRegistering) {
-      if (!/^[A-Za-z\s]+$/.test(formData.name)) {
+      if (!nameRegex.test(formData.name.trim())) {
         newErrors.name = "Name must contain only letters and spaces.";
       }
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    if (!emailRegex.test(formData.email.trim())) {
       newErrors.email = "Invalid email format.";
     }
 
-    if (
-      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/.test(
-        formData.password
-      )
-    ) {
+    if (!passwordRegex.test(formData.password)) {
       newErrors.password =
-        "Password must be at least 8 characters, with atleast an uppercase character, a lowercase character, a number, and a special character.";
+        "Password must be at least 8 characters with uppercase, lowercase, number & special character.";
     }
 
     setErrors(newErrors);
@@ -51,7 +50,7 @@ const LoginPage = () => {
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setErrors((prev) => ({ ...prev, [e.target.name]: "" })); 
+    setErrors((prev) => ({ ...prev, [e.target.name]: "" }));
   };
 
   const handleSubmit = async (e) => {
@@ -63,7 +62,7 @@ const LoginPage = () => {
     setSuccessMessage("");
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/${endpoint}`, {
+      const res = await fetch(`https://perfume-store-backend.onrender.com/api/auth/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -95,7 +94,7 @@ const LoginPage = () => {
         }
       }, 1000);
     } catch (err) {
-      alert("Server error");
+      alert("❌ Server error");
       setLoading(false);
     }
   };
@@ -110,7 +109,12 @@ const LoginPage = () => {
       )}
 
       {showSuccessScreen && (
-        <motion.div className="success-screen" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        <motion.div
+          className="success-screen"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="success-box">
             <p>{successMessage}</p>
           </div>
@@ -118,8 +122,14 @@ const LoginPage = () => {
       )}
 
       {!loading && !showSuccessScreen && (
-        <motion.div className="auth-box" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+        <motion.div
+          className="auth-box"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
           <h2>{isRegistering ? "Create Account" : "Welcome Back"}</h2>
+
           <form onSubmit={handleSubmit} className="auth-form">
             {isRegistering && (
               <>
@@ -167,7 +177,7 @@ const LoginPage = () => {
             {errors.password && <p className="auth-msg error">{errors.password}</p>}
 
             <p className="forgot-password">
-              <Link className="forgot-password" to="/forgot-password">Forgot Password?</Link>
+              <Link to="/forgot-password">Forgot Password?</Link>
             </p>
 
             <button type="submit" className="btn-primary" disabled={loading}>
@@ -176,7 +186,9 @@ const LoginPage = () => {
           </form>
 
           <p onClick={toggleForm} className="switch-link">
-            {isRegistering ? "Already have an account? Login" : "Don't have an account? Register"}
+            {isRegistering
+              ? "Already have an account? Login"
+              : "Don't have an account? Register"}
           </p>
         </motion.div>
       )}

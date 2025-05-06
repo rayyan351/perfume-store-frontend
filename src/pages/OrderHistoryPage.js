@@ -7,19 +7,23 @@ const OrderHistoryPage = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    if (!auth || !auth.token) return; 
+    if (!auth || !auth.token) return;
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/my-orders`, {
+        const res = await fetch("https://perfume-store-backend.onrender.com/api/orders/my-orders", {
           headers: {
             Authorization: auth.token,
           },
         });
         const data = await res.json();
-        setOrders(data);
+        if (res.ok) {
+          setOrders(data);
+        } else {
+          alert(data.message || "❌ Failed to fetch orders.");
+        }
       } catch (err) {
-        alert("Failed to load order history");
+        alert("❌ Server error while fetching order history.");
       }
     };
 
@@ -44,17 +48,13 @@ const OrderHistoryPage = () => {
         <ul className="order-list">
           {orders.map((order) => (
             <li key={order._id} className="order-item">
-              <div><strong>Date:</strong> {order.createdAt ? new Date(order.createdAt).toLocaleString() : "N/A"}</div>
-              <div>
-                <strong>Total:</strong> ${typeof order.total === "number" ? order.total.toFixed(2) : "0.00"}
-              </div>
+              <div><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</div>
+              <div><strong>Total:</strong> ${order.total?.toFixed(2) || "0.00"}</div>
               <div><strong>Items:</strong></div>
               <ul>
-                {order.items && order.items.length > 0 ? (
-                  order.items.map((item, index) => (
-                    <li key={`${item.name}-${index}`}>
-                      {item.name} × {item.quantity}
-                    </li>
+                {order.items?.length ? (
+                  order.items.map((item, i) => (
+                    <li key={i}>{item.name} × {item.quantity}</li>
                   ))
                 ) : (
                   <li>No items found</li>

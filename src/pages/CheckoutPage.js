@@ -32,7 +32,7 @@ const CheckoutPage = () => {
     const newErrors = {};
     const { name, email, address, phone } = formData;
 
-    if (!/^[A-Za-z\s]+$/.test(name)) {
+    if (!/^[A-Za-z\s]+$/.test(name.trim())) {
       newErrors.name = "Name must contain only letters and spaces.";
     }
 
@@ -43,13 +43,10 @@ const CheckoutPage = () => {
     if (!address.trim()) {
       newErrors.address = "Address cannot be empty.";
     }
-    
-    if (!/^\d*$/.test(phone)) {
-      newErrors.phone = "Phone number must contain digits only.";
-    } else if (phone.length !== 11) {
-      newErrors.phone = "Phone number must be exactly 11 digits long.";
+
+    if (!/^\d{11}$/.test(phone)) {
+      newErrors.phone = "Phone number must be exactly 11 digits long and contain numbers only.";
     }
-    
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -72,7 +69,7 @@ const CheckoutPage = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/place`, {
+      const res = await fetch(`https://perfume-store-backend.onrender.com/api/orders/place`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

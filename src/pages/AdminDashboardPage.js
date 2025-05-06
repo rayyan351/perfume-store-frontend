@@ -10,15 +10,16 @@ const AdminDashboardPage = () => {
   const [stats, setStats] = useState({ totalUsers: 0, totalOrders: 0, totalSales: 0 });
   const [filterDates, setFilterDates] = useState({ start: "", end: "" });
   const [filteredStats, setFilteredStats] = useState(null);
-  const [filterMode, setFilterMode] = useState("range"); 
+  const [filterMode, setFilterMode] = useState("range");
   const [singleDate, setSingleDate] = useState("");
-  const navigate = useNavigate(); 
-   useEffect(() => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
     if (!auth || !auth.token) {
       navigate("/login");
     } else if (!auth.user?.isAdmin) {
       alert("❌ Access Denied. This page is only for admins.");
-      navigate("/"); 
+      navigate("/");
     }
   }, [auth, navigate]);
 
@@ -27,7 +28,7 @@ const AdminDashboardPage = () => {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/all`, {
+        const res = await fetch("https://perfume-store-backend.onrender.com/api/orders/all", {
           headers: { Authorization: auth.token },
         });
         const data = await res.json();
@@ -48,7 +49,7 @@ const AdminDashboardPage = () => {
     if (!auth || !auth.token) return;
 
     const fetchStats = async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/admin/stats`, {
+      const res = await fetch("https://perfume-store-backend.onrender.com/api/admin/stats", {
         headers: { Authorization: auth.token },
       });
       const data = await res.json();
@@ -59,14 +60,12 @@ const AdminDashboardPage = () => {
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
-    setOrders(
-      ordersBackup.filter((o) => o.email?.toLowerCase().includes(query))
-    );
+    setOrders(ordersBackup.filter((o) => o.email?.toLowerCase().includes(query)));
   };
 
   const handleDateFilter = async () => {
     let start, end;
-  
+
     if (filterMode === "range") {
       if (!filterDates.start || !filterDates.end)
         return alert("Please select both dates");
@@ -77,9 +76,9 @@ const AdminDashboardPage = () => {
       start = singleDate;
       end = singleDate;
     }
-  
+
     const resOrders = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/orders/filter?startDate=${start}&endDate=${end}`,
+      `https://perfume-store-backend.onrender.com/api/orders/filter?startDate=${start}&endDate=${end}`,
       {
         headers: { Authorization: auth.token },
       }
@@ -87,9 +86,9 @@ const AdminDashboardPage = () => {
     const ordersData = await resOrders.json();
     if (!resOrders.ok) return alert(ordersData.message);
     setOrders(ordersData);
-  
+
     const resStats = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/admin/stats/date?startDate=${start}&endDate=${end}`,
+      `https://perfume-store-backend.onrender.com/api/admin/stats/date?startDate=${start}&endDate=${end}`,
       {
         headers: { Authorization: auth.token },
       }
@@ -97,7 +96,6 @@ const AdminDashboardPage = () => {
     const statsData = await resStats.json();
     if (resStats.ok) setFilteredStats(statsData);
   };
-  
 
   return (
     <div className="admin-dashboard">
@@ -108,68 +106,63 @@ const AdminDashboardPage = () => {
         <div><strong>Total Sales:</strong> ${typeof stats.totalSales === "number" ? stats.totalSales.toFixed(2) : "0.00"}</div>
       </div>
 
-    <div className="filter-panel">
-<div className="filter-toggle">
-  <input
-    type="radio"
-    id="mode-range"
-    name="filterMode"
-    value="range"
-    checked={filterMode === "range"}
-    onChange={() => setFilterMode("range")}
-  />
-  <label htmlFor="mode-range">Date Range</label>
+      <div className="filter-panel">
+        <div className="filter-toggle">
+          <input
+            type="radio"
+            id="mode-range"
+            name="filterMode"
+            value="range"
+            checked={filterMode === "range"}
+            onChange={() => setFilterMode("range")}
+          />
+          <label htmlFor="mode-range">Date Range</label>
 
-  <input
-    type="radio"
-    id="mode-single"
-    name="filterMode"
-    value="single"
-    checked={filterMode === "single"}
-    onChange={() => setFilterMode("single")}
-  />
-  <label htmlFor="mode-single">Single Date</label>
-</div>
+          <input
+            type="radio"
+            id="mode-single"
+            name="filterMode"
+            value="single"
+            checked={filterMode === "single"}
+            onChange={() => setFilterMode("single")}
+          />
+          <label htmlFor="mode-single">Single Date</label>
+        </div>
 
-<div className="filter-panel">
-  {filterMode === "range" ? (
-    <>
-      <input
-        type="date"
-        value={filterDates.start}
-        onChange={(e) =>
-          setFilterDates((prev) => ({ ...prev, start: e.target.value }))
-        }
-      />
-      <input
-        type="date"
-        value={filterDates.end}
-        onChange={(e) =>
-          setFilterDates((prev) => ({ ...prev, end: e.target.value }))
-        }
-      />
-      </>
-     ) : (
-     <input
-      type="date"
-      value={singleDate}
-      onChange={(e) => setSingleDate(e.target.value)}
-      />
-      )}
+        <div className="filter-panel">
+          {filterMode === "range" ? (
+            <>
+              <input
+                type="date"
+                value={filterDates.start}
+                onChange={(e) => setFilterDates({ ...filterDates, start: e.target.value })}
+              />
+              <input
+                type="date"
+                value={filterDates.end}
+                onChange={(e) => setFilterDates({ ...filterDates, end: e.target.value })}
+              />
+            </>
+          ) : (
+            <input
+              type="date"
+              value={singleDate}
+              onChange={(e) => setSingleDate(e.target.value)}
+            />
+          )}
 
-    <button  className="filter-btn" onClick={handleDateFilter}>Filter Orders</button>
-    <button className="reset-btn" onClick={() => {
-     setFilterDates({ start: "", end: "" });
-     setSingleDate("");
-     setFilterMode("range");
-     setFilteredStats(null);
-     setOrders(ordersBackup);
-     }}
-      >
-     Reset Filters
-     </button>
-       </div>
-       </div>
+          <button className="filter-btn" onClick={handleDateFilter}>Filter Orders</button>
+          <button className="reset-btn" onClick={() => {
+            setFilterDates({ start: "", end: "" });
+            setSingleDate("");
+            setFilterMode("range");
+            setFilteredStats(null);
+            setOrders(ordersBackup);
+          }}>
+            Reset Filters
+          </button>
+        </div>
+      </div>
 
       {filteredStats && (
         <div className="stats-panel filtered" style={{ background: "#e0f7e0" }}>
@@ -202,7 +195,7 @@ const AdminDashboardPage = () => {
                   value={order.status}
                   onChange={async (e) => {
                     const newStatus = e.target.value;
-                    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/status/${order._id}`, {
+                    const res = await fetch(`https://perfume-store-backend.onrender.com/api/orders/status/${order._id}`, {
                       method: "PUT",
                       headers: {
                         "Content-Type": "application/json",
@@ -214,14 +207,10 @@ const AdminDashboardPage = () => {
                     if (!res.ok) return alert(data.message);
                     alert("✅ Status updated!");
                     setOrders((prev) =>
-                      prev.map((o) =>
-                        o._id === order._id ? { ...o, status: newStatus } : o
-                      )
+                      prev.map((o) => (o._id === order._id ? { ...o, status: newStatus } : o))
                     );
                     setOrdersBackup((prev) =>
-                      prev.map((o) =>
-                        o._id === order._id ? { ...o, status: newStatus } : o
-                      )
+                      prev.map((o) => (o._id === order._id ? { ...o, status: newStatus } : o))
                     );
                   }}
                 >
@@ -245,7 +234,7 @@ const AdminDashboardPage = () => {
                 onClick={async () => {
                   const confirmDelete = window.confirm("Are you sure you want to delete this order?");
                   if (!confirmDelete) return;
-                  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/orders/${order._id}`, {
+                  const res = await fetch(`https://perfume-store-backend.onrender.com/api/orders/${order._id}`, {
                     method: "DELETE",
                     headers: { Authorization: auth.token },
                   });

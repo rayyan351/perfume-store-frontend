@@ -10,7 +10,7 @@ const Footer = () => {
     if (!email) return setMessage("Please enter a valid email.");
 
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/newsletter/subscribe`, {
+      const res = await fetch("https://perfume-store-backend.onrender.com/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
