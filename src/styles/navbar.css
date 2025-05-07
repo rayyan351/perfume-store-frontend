@@ -119,12 +119,11 @@
 /* 🎯 Logout button styling */
 .logout-btn {
   background: transparent;
-  border: 1px solid #f5deb3;
   color: white;
-  border-radius: 20px;
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .logout-btn:hover {
@@ -181,7 +180,7 @@
   }
 
   .mobile-nav li a,
-  .mobile-nav li button,
+  .mobile-nav li button .logout-btn,
   .mobile-nav li span {
     font-size: 1.1rem;
     font-weight: 500;
@@ -205,6 +204,26 @@
     align-items: center;
     position: relative;
   }
+
+  .mobile-nav li button.logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: left;
+    width: 100%;
+    display: block;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .mobile-nav li button.logout-btn:hover {
+    color: #f5deb3;
+    transform: translateX(4px);
+  }
+  
 
   .mobile-nav .cart-count {
     position: absolute;
