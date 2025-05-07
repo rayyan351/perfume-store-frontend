@@ -23,7 +23,8 @@ const PerfumeCard = ({ perfume, variant = "full" }) => {
       viewport={{ once: true }}
     >
       <Link to={`/perfumes/${perfume.id}`} className="card-link">
-        <img src={perfume.image} alt={perfume.name} className="perfume-img" />
+      <div className="perfume-img-container">
+        <img src={perfume.image} alt={perfume.name} className="perfume-img" /></div>
         <h3>{perfume.name}</h3>
         <p>${perfume.price}</p>
       </Link>

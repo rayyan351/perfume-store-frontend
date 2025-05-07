@@ -9,14 +9,16 @@
 
 .product-img {
   width: 100%;
-  max-width: 440px;     
-  max-height: 420px;
-  aspect-ratio: 4 / 5;     
-  object-fit: cover;
+  height: auto;
+  max-width: 420px;
   border-radius: 16px;
+  object-fit: contain; /* 🛠 Fixes the cropping */
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
-  margin: 0 auto;          
+  margin: 0 auto;
+  display: block;
 }
+
+
 
 .product-info {
   display: flex;
@@ -53,8 +55,8 @@
 .actions {
   display: flex;
   gap: 1rem;
- 
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .actions .btn-primary,
@@ -162,6 +164,21 @@
   }
 }
 
+/* ✅ Mobile & Tablet Breakpoints */
+@media (max-width: 1024px) {
+  .product-info h2 {
+    font-size: 2.2rem;
+  }
+
+  .product-description {
+    font-size: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.4rem;
+  }
+}
+
 @media (max-width: 900px) {
   .product-details {
     grid-template-columns: 1fr;
@@ -175,6 +192,51 @@
 
   .actions {
     justify-content: center;
-    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-details {
+    padding: 2.5rem 1.5rem;
+    gap: 2rem;
+  }
+
+  .product-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .product-price {
+    font-size: 1.2rem;
+  }
+
+  .product-description {
+    font-size: 0.95rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .actions .btn-primary,
+  .actions .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .glass-panel {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-img {
+    max-width: 360px; /* or even 340px depending on your layout */
+  }
+}
+
+@media (min-width: 1440px) {
+  .product-img {
+    max-width: 360px;
   }
 }

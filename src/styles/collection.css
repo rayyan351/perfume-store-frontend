@@ -31,29 +31,23 @@
   margin-right: auto;
 }
 
+/* Responsive perfume grid */
 .perfume-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
   padding-bottom: 2rem;
 }
 
-@media (min-width: 769px) {
-  .perfume-grid:has(.perfume-card:nth-child(1):nth-last-child(1)) {
-    justify-content: center;
-    grid-template-columns: 1fr;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .perfume-grid:has(.perfume-card:nth-child(2):nth-last-child(1)) {
-    justify-content: center;
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 800px;
-    margin: 0 auto;
-  }
+.perfume-card {
+  flex: 1 1 260px;
+  max-width: 320px;
+  box-sizing: border-box;
 }
 
+
+/* CTA Button Section */
 .cta-container {
   margin-top: 2rem;
   display: flex;
@@ -77,6 +71,7 @@
   box-shadow: 0 6px 18px rgba(245, 222, 179, 0.4);
 }
 
+/* Search Input */
 .search-input {
   margin: 1.5rem auto;
   display: block;
@@ -89,6 +84,7 @@
   background-color: #fff;
 }
 
+/* Filter Bar */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -105,6 +101,7 @@
   border: 1px solid #ccc;
   font-size: 0.95rem;
   background-color: #fff;
+  min-width: 180px;
 }
 
 .filter-bar span {
@@ -112,6 +109,7 @@
   font-size: 0.95rem;
 }
 
+/* ========== Mobile ========== */
 @media (max-width: 768px) {
   .collection-section {
     padding: 3.5rem 1rem;
@@ -125,14 +123,15 @@
     font-size: 1rem;
   }
 
+  .perfume-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
   .cta-container .btn {
     width: 100%;
     max-width: 280px;
     padding: 0.75rem 1.2rem;
-  }
-
-  .perfume-grid {
-    gap: 1.5rem;
   }
 
   .filter-bar {
@@ -149,5 +148,26 @@
   .search-input {
     width: 100%;
     max-width: 300px;
+  }
+}
+
+/* ========== Large screens ========== */
+@media (min-width: 1024px) {
+  .collection-section h2 {
+    font-size: 3rem;
+  }
+
+  .collection-section p {
+    font-size: 1.2rem;
+  }
+
+  .perfume-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .cta-container .btn {
+    font-size: 1rem;
+    padding: 0.85rem 2rem;
   }
 }
