@@ -116,6 +116,23 @@
   border-bottom: 2px solid #f5deb3;
 }
 
+/* 🎯 Logout button styling */
+.logout-btn {
+  background: transparent;
+  border: 1px solid #f5deb3;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #111;
+  color: white;
+  transform: scale(1.05);
+}
+
 @media (max-width: 768px) {
   .hamburger {
     display: flex;

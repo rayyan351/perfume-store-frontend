@@ -73,8 +73,8 @@ const Navbar = () => {
           {auth ? (
             <>
               <li>
-                <button onClick={handleLogout} disabled={loggingOut}>
-                {loggingOut ? <>Logging out</> : "Logout"}
+                <button className="logout-btn" onClick={handleLogout} disabled={loggingOut}>
+                {loggingOut ? <>Logging out...</> : "Logout"}
                 </button>
               </li>
               <li><span>Welcome, {auth.user.name}</span></li>
@@ -103,8 +103,8 @@ const Navbar = () => {
             {auth ? (
               <>
                 <li>
-                  <button onClick={handleLogout} disabled={loggingOut}>
-                  {loggingOut ? <>Logging out</> : "Logout"}
+                  <button  className="logout-btn" onClick={handleLogout} disabled={loggingOut}>
+                  {loggingOut ? <>Logging out...</> : "Logout"}
                   </button>
                 </li>
                 <li><span>Welcome, {auth.user.name}</span></li>
