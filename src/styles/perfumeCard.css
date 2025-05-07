@@ -168,7 +168,11 @@
   .perfume-card.full .perfume-img {
     height: 200px;
   }
-
+  
+  .perfume-img{
+    width:60%;
+  }
+  
   .perfume-card.full h3 {
     font-size: 1.1rem;
   }

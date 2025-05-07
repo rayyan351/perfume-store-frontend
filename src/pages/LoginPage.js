@@ -177,7 +177,7 @@ const LoginPage = () => {
             {errors.password && <p className="auth-msg error">{errors.password}</p>}
 
             <p className="forgot-password">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link className="forgot-password" to="/forgot-password">Forgot Password?</Link>
             </p>
 
             <button type="submit" className="btn-primary" disabled={loading}>
